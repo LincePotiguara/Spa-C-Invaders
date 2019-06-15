@@ -5,4 +5,4 @@
 #define ESC_KEY 27
 void initialize();
 void execute_until_esc();
-void quit(WINDOW *win);
+void quit();
