@@ -1,7 +1,12 @@
+# Compiler flags
+CFLAGS=-Wall -pedantic
+# Linker flag
+LFLAGS=-lncurses
+
 all: spac
 
-spac: main.c
-	$(CC) -o spac main.c -Wall -pedantic -lncurses
+spac:
+	$(CC) -o spac main.c $(CFLAGS) $(LFLAGS)
 
 clean:
 	rm spac
