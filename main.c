@@ -1,15 +1,7 @@
 #include "main.h"
 
-void quit(WINDOW *win) {
-    delwin(win);
-    endwin();
-    refresh();
-    
-}
-
-int main( int argc, char ** argv ) {
-    int ch;
-    char keycode[17];
+/* Inicializa a tela */
+void initialize(){
     initscr();
 
     /* Checando por falhas */
@@ -22,7 +14,12 @@ int main( int argc, char ** argv ) {
     noecho();
     keypad(stdscr, TRUE);
 
-    /* Executa até pressionar a tecla Esc */
+}
+
+/* Executa até pressionar a tecla Esc */
+void execute_until_esc(){
+    int ch;
+    char keycode[17];
     while ( (ch = getch()) != ESC_KEY ) {
 		snprintf(keycode, 16, "%d", ch);
 		move(0, 0);
@@ -33,6 +30,20 @@ int main( int argc, char ** argv ) {
         refresh();
 
 	}
+}
+
+/* Sai da tela */
+void quit(WINDOW *win) {
+    delwin(win);
+    endwin();
+    refresh();
+}
+
+int main( int argc, char ** argv ) {
+    /* Inicializa a tela */
+    initialize();
+    /* Executa até pressionar a tecla Esc */
+    execute_until_esc();
     /* Libera a memória e finaliza o programa */
     quit(stdscr);
     return 0;

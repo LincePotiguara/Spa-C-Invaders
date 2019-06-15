@@ -3,4 +3,6 @@
 #include <ncurses.h>
 
 #define ESC_KEY 27
-void quit( WINDOW *win );
+void initialize();
+void execute_until_esc();
+void quit(WINDOW *win);
