@@ -36,7 +36,7 @@ void player_control(){
 
         /* Se for ESC, sai do jogo */
         case ESC_KEY:
-            quit(stdscr);
+            quit();
             break;
 
         /* Se for a setinha esquerda, anda com o conjunto pra esquerda */
@@ -68,18 +68,18 @@ void player_control(){
 
 /* Executa até pressionar a tecla Esc */
 void execute_until_esc() {
-    
+
         /* Detecta e regista os limites do terminal */
     getmaxyx(stdscr, max_y, max_x);
-    
+
     /* Determina a poisção inicial da nave */
     player_x = (max_x/2) - 3;
     player_y = max_y - 3;
-    
+
     /* Imprime a posição inicial da nave */
     mvprintw(player_y-1, player_x+1, player_01);
     mvprintw(player_y, player_x, player_02);
-    
+
     while (1) {
         /* Função responsável pelo controle do jogador */
         player_control();
@@ -90,7 +90,7 @@ void execute_until_esc() {
 void quit() {
     delwin(stdscr);
     endwin();
-    refresh();
+    exit(0);
 }
 
 int main(int argc, char ** argv) {
