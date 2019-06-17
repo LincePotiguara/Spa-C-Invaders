@@ -2,11 +2,14 @@
 CFLAGS=-Wall -pedantic
 # Linker flag
 LFLAGS=-lncurses
-
-all: clean spac
+# File objects
+OBJS=main.o caracters.o game_loop.o
+SOURCES=main.c characters.c game_loop.c
 
 spac:
-	$(CC) -o spac main.c $(CFLAGS) $(LFLAGS)
+	$(CC) -o spac $(SOURCES) $(CFLAGS) $(LFLAGS)
+
+all: clean spac
 
 clean:
 	rm spac
