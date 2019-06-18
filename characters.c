@@ -35,6 +35,8 @@ void player_control(){
                 player_x++;
             }
             break;
+        default:
+            break;
         }
         refresh();
         mvprintw(player_y-1, player_x, player_01);

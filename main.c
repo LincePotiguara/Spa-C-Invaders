@@ -18,6 +18,8 @@ int main(int argc, char ** argv) {
     /* Inicializa a tela */
     initialize();
     
+    /* Registra entrada de maneira não bloqueante */
+    nodelay(stdscr, 1);
     /* Detecta e regista os limites do terminal */
     getmaxyx(stdscr, max_y, max_x);
 
