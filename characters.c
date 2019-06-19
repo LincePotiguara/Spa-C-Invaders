@@ -42,3 +42,17 @@ void player_control(){
         mvprintw(player_y-1, player_x, player_01);
         mvprintw(player_y, player_x, player_02);
 }
+
+void move_alien() {
+	move (alien_y, alien_x);
+	wclrtoeol (stdscr);
+	move (alien_y-1, alien_x);
+	wclrtoeol (stdscr);
+	if ((alien_x+direction)>=(max_x-ALIEN_01_SIZE) || (alien_x+direction)<0)
+		direction *= -1;
+	alien_x += direction;
+	refresh();
+	mvprintw (alien_y-1, alien_x, alien_01);
+	mvprintw (alien_y, alien_x, alien_02);
+	usleep(1000*24);
+}
