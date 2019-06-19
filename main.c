@@ -80,9 +80,18 @@ void execute_until_esc() {
     mvprintw(player_y-1, player_x+1, player_01);
     mvprintw(player_y, player_x, player_02);
 
+    /* Quantidade de linhas de inimigos e inimigos por linha*/
+    int enemy_qty = 11;
+    int enemy_line = 5;
+
+    print_wave(1, 1, enemy_qty, enemy_line);
+    move_wave(1, enemy_qty, enemy_line, max_x, 500000);
+
     while (1) {
         /* Função responsável pelo controle do jogador */
         player_control();
+        //move_wave(1, enemy_qty, enemy_line, max_x, 1);
+
 	}
 }
 

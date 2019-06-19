@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <ncurses.h>
+#include "sprites.h"
 
 #define ESC_KEY 27
 #define DOWN_ARROW_KEY 258
