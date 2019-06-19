@@ -80,12 +80,14 @@ void execute_until_esc() {
     mvprintw(player_y-1, player_x+1, player_01);
     mvprintw(player_y, player_x, player_02);
 
-    /* Quantidade de linhas de inimigos e inimigos por linha*/
+    /* Quantidade de inimigos por linha e de linhas de inimigos*/
     int enemy_qty = 11;
     int enemy_line = 5;
 
+    /*Imprime a posição inicial da wave de inimigos*/
     print_wave(1, 1, enemy_qty, enemy_line, enemy_type1);
 
+    /*Move a wave de inimigos até 2 linhas antes do jogador*/
     int line;
     for(line = 1; line < player_y-enemy_line-6; line++){
 
@@ -96,7 +98,6 @@ void execute_until_esc() {
     while (1) {
         /* Função responsável pelo controle do jogador */
         player_control();
-        //move_wave(1, enemy_qty, enemy_line, max_x, 1);
 
 	}
 }
