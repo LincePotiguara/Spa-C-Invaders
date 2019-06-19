@@ -84,8 +84,14 @@ void execute_until_esc() {
     int enemy_qty = 11;
     int enemy_line = 5;
 
-    print_wave(1, 1, enemy_qty, enemy_line);
-    move_wave(1, enemy_qty, enemy_line, max_x, 500000);
+    print_wave(1, 1, enemy_qty, enemy_line, enemy_type1);
+
+    int line;
+    for(line = 1; line < player_y-enemy_line-6; line++){
+
+      move_wave(line, enemy_qty, enemy_line, max_x, 50000, enemy_type1);
+
+    }
 
     while (1) {
         /* Função responsável pelo controle do jogador */
