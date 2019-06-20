@@ -3,8 +3,12 @@
 
 extern int ch;
 extern int player_x, player_y, max_x, max_y;
-extern char *player_01 , *player_02;
+extern struct Tplayer{
+    char *top_row;
+    char *bottom_row;
+};
+extern Tplayer player;
 
-void execute_until_esc();
+
 
 #endif
