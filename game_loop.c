@@ -2,6 +2,7 @@
 #include "characters.h"
 #include "game_loop.h"
 #include "main.h"
+#include <unistd.h>
 
 /* Executa até pressionar a tecla Esc */
 void execute_until_esc() {
@@ -13,7 +14,7 @@ void execute_until_esc() {
 		move_alien();
         /* Função responsável pelo controle do jogador */
         player_control();
-		usleep(1000*16);
+		usleep(1000*32);
         //progress = (progress + 1)%4;
 	}
 }
