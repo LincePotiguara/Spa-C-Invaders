@@ -6,6 +6,8 @@ char enemy_type1[size] = "***";
 /*Função para mostrar a wave na tela e apagar a última wave mostrada*/
 void print_wave(int a, int b, int enemy_qty, int enemy_line, char *enemy_sprite){
 
+  b = b/10;
+
   int i, j;
   for(i = 0; i < enemy_line; i++){
     for(j = 0; j < enemy_qty; j++){
@@ -25,6 +27,8 @@ void print_wave(int a, int b, int enemy_qty, int enemy_line, char *enemy_sprite)
 
       }
 
+      player_control();
+
     }
   }
 
@@ -38,7 +42,7 @@ void move_wave(int a, int enemy_qty, int enemy_line, int max_x, int speed, char 
   /*Se a linha é ímpar, a wave está no canto esquerdo*/
   if(a%2 == 1){
 
-    int last = 5*enemy_qty;
+    int last = 5*enemy_qty-1;
 
     /*Apaga os elementos que sobraram da wave na sua última passagem*/
     print_wave(a-1, 1, enemy_qty, enemy_line, "   ");
@@ -48,7 +52,9 @@ void move_wave(int a, int enemy_qty, int enemy_line, int max_x, int speed, char 
 
       print_wave(a, i, enemy_qty, enemy_line, enemy_sprite);
       refresh();
-      last++;
+      if(i%10 == 0){
+        last++;
+      }
       usleep(speed);
 
     }
@@ -56,13 +62,13 @@ void move_wave(int a, int enemy_qty, int enemy_line, int max_x, int speed, char 
     /*A linha é par, a wave está no canto direito*/
   } else {
 
-    int first = max_x-(5*enemy_qty)-1;
+    int first = max_x-(5*enemy_qty)+2;
 
     /*Apaga os elementos que sobraram da wave na sua última passagem*/
-    print_wave(a-1, first+2, enemy_qty, enemy_line, "   ");
+    print_wave(a-1, 10*(first+1), enemy_qty, enemy_line, "   ");
 
     /*Imprime a wave até o primeiro elemento chegar no canto esquerdo, com intervalo entre as impressões*/
-    for(i = first; i >= 1; i--){
+    for(i = first*10+9; i >= 1; i--){
 
       print_wave(a, i, enemy_qty, enemy_line, enemy_sprite);
       refresh();
