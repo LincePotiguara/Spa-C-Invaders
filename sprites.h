@@ -2,7 +2,7 @@
 #define SPRITES_H
 #define size 4
 
-extern char enemy_type1[];
+extern char *enemy_type1;
 
 void print_wave(
     int a,
