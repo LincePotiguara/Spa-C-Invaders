@@ -6,6 +6,4 @@ extern int player_x, player_y, max_x, max_y;
 extern struct Tplayer;
 extern struct Tplayer player;
 
-
-
 #endif

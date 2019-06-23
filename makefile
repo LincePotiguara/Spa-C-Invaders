@@ -3,6 +3,7 @@ CFLAGS=-Wall -pedantic
 # Linker flag
 LFLAGS=-lncurses
 # File objects
+
 OBJS=main.o
 SOURCES=main.c
 

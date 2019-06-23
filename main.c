@@ -1,5 +1,13 @@
 #include <ncurses.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include "characters.h"
+#include "game_loop.h"
 #include "main.h"
+#include "sprites.h"
+
+/*Definições dos sprites dos inimigos*/
+char *enemy_type1 = "***";
 
 /* Variáveis responsáveis pela detecção do teclado */
 int ch;
