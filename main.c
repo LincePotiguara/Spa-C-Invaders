@@ -1,9 +1,13 @@
 #include <ncurses.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "main.h"
-#include "game_loop.h"
 #include "characters.h"
+#include "game_loop.h"
+#include "main.h"
+#include "sprites.h"
+
+/*Definições dos sprites dos inimigos*/
+char *enemy_type1 = "***";
 
 /* Variável responsável pela detecção do teclado */
 int ch;
@@ -20,6 +24,7 @@ int main(int argc, char ** argv) {
     
     /* Registra entrada de maneira não bloqueante */
     nodelay(stdscr, 1);
+
     /* Detecta e regista os limites do terminal */
     getmaxyx(stdscr, max_y, max_x);
 
@@ -30,9 +35,10 @@ int main(int argc, char ** argv) {
     /* Imprime a posição inicial da nave */
     mvprintw(player_y-1, player_x, player_01);
     mvprintw(player_y, player_x, player_02);
-
+    
     /* Executa até pressionar a tecla Esc */
     execute_until_esc();
+
     /* Libera a memória e finaliza o programa */
     quit();
     return 0;

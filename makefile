@@ -4,7 +4,7 @@ CFLAGS=-Wall -pedantic
 LFLAGS=-lncurses
 # File objects
 OBJS=main.o caracters.o game_loop.o
-SOURCES=main.c characters.c game_loop.c
+SOURCES=main.c characters.c game_loop.c sprites.c
 
 spac:
 	$(CC) -o spac $(SOURCES) $(CFLAGS) $(LFLAGS)
