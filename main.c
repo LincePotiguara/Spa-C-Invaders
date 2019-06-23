@@ -53,8 +53,8 @@ int main(int argc, char ** argv) {
     getmaxyx(stdscr, max_y, max_x);
 
     /* Define o formado do jogador e do tiro */
-    player.top_row = " __|__ ";
-    player.bottom_row = "|_____|";
+    player.top_row = "  __|__  ";
+    player.bottom_row = " |_____| ";
     player.bullet = "|";
     player.already_fired = 0;
 
@@ -103,8 +103,8 @@ void player_control(){
             /* Verifica se já existe um tiro do jogador em jogo */
             if (!(player.already_fired)){
                 /* Define a coordenada x do tiro do jogador */
-                player.bullet_x = player.player_x+(PLAYER_TOP_ROW_SIZE)/2-1;
-                player.bullet_y = player.player_y-3;
+                player.bullet_x = player.player_x+(PLAYER_TOP_ROW_SIZE)/2;
+                player.bullet_y = player.player_y-2;
                 player.already_fired = 1;         
             }
             break;
@@ -126,9 +126,10 @@ void player_control(){
         default:
             break;
         }
-    player.bullet_y --;
-    if (player.bullet_y < 0)
+    player.bullet_y--;
+    if (player.bullet_y < 0) {
         player.already_fired = 0;
+    }
 }
 
 /* Função responsável pelo tiro do jogador */
@@ -136,9 +137,7 @@ void player_control(){
 
 void print_all(){
     move(player.player_y, 0);
-    wclrtoeol(stdscr);
     move(player.player_y-1, 0);
-    wclrtoeol(stdscr);
     mvprintw(player.player_y-1, player.player_x, player.top_row);
     mvprintw(player.player_y, player.player_x, player.bottom_row);
     mvprintw(player.bullet_y, player.bullet_x, player.bullet);
@@ -147,7 +146,7 @@ void print_all(){
     move(0, 0);
     wclrtoeol(stdscr);
     refresh();
-    usleep(30000);
+    usleep(30*1000);
 }
 
 /* Sai da tela */
