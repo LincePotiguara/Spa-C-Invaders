@@ -1,3 +1,4 @@
+#include <ncurses.h>
 #include "main.h"
 
 /* Variáveis responsáveis pela detecção do teclado */
@@ -98,7 +99,7 @@ void player_control(){
             break;
 
         /* Se for a setinha pra cima, atira */
-        case UP_ARROW_KEY:
+        case KEY_UP:
             
             /* Verifica se já existe um tiro do jogador em jogo */
             if (!(player.already_fired)){
@@ -110,14 +111,14 @@ void player_control(){
             break;
 
         /* Se for a setinha esquerda, anda com o conjunto pra esquerda */
-        case LEFT_ARROW_KEY:
+        case KEY_LEFT:
             if (player.player_x > 0){
                 player.player_x--;
             }
             break;
 
         /* Se for a setinha direita, anda com o conjunto pra direita */
-        case RIGHT_ARROW_KEY:
+        case KEY_RIGHT:
             if (player.player_x < max_x - PLAYER_BOTTOM_ROW_SIZE){
                 player.player_x++;
             }
