@@ -20,6 +20,5 @@ void execute_until_esc() {
     while (1) {
         /* Função responsável pelo controle do jogador */
         player_control();
-
 	}
 }

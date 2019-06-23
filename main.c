@@ -1,9 +1,10 @@
 #include <ncurses.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include "characters.h"
+#include "game_loop.h"
 #include "main.h"
 #include "sprites.h"
-
 
 /*Definições dos sprites dos inimigos*/
 char *enemy_type1 = "***";
@@ -20,7 +21,7 @@ char *player_01 = " __|__ ", *player_02 = "|_____|";
 int main(int argc, char ** argv) {
     /* Inicializa a tela */
     initialize();
-
+    
     /* Registra entrada de maneira não bloqueante */
     nodelay(stdscr, 1);
 
@@ -37,7 +38,7 @@ int main(int argc, char ** argv) {
     
     /* Executa até pressionar a tecla Esc */
     execute_until_esc();
-    
+
     /* Libera a memória e finaliza o programa */
     quit();
     return 0;

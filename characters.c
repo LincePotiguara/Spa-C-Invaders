@@ -4,10 +4,9 @@
 
 /* Função responsável pelo controle do jogador */
 void player_control() {
-
     /* Detecta a tecla pressionada no teclado */
     ch = getch();
-    switch(ch){
+    switch(ch) {
 
         /* Se for ESC, sai do jogo */
         case ESC_KEY:
@@ -34,6 +33,8 @@ void player_control() {
                 wclrtoeol(stdscr);
                 player_x++;
             }
+            break;
+        default:
             break;
         }
         refresh();
