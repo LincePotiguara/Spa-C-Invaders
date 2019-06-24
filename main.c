@@ -5,45 +5,65 @@
 #include "game_loop.h"
 #include "characters.h"
 
+/* Define o player */
+struct Tplayer player;
+
+/* Define o alien */
+struct Talien alien;
+
 /* Variável responsável pela detecção do teclado */
 int ch;
 
-/* Coordenadas do jogador, coordenadas dos limites do terminal */
-int player_x, player_y, max_x, max_y;
+/* Coordenadas dos limites do terminal */
+int max_x, max_y;
+
 /* Coordenadas do alien, direç~ao do movimento */
-int alien_x, alien_y, direction;
+//int alien_x, alien_y, direction;
 
 /* Strings responsáveis pelo jogador */
-char *player_01 = " __|__ ", *player_02 = "|_____|";
+//char *player_01 = " __|__ ", *player_02 = "|_____|";
 
 /* Strings responsáveis pelos aliens */
-char *alien_01 = "||/=\\||", *alien_02 = " |\\_/| ";
+//char *alien_01 = "||/=\\||", *alien_02 = " |\\_/| ";
 
 int main(int argc, char ** argv) {
     /* Inicializa a tela */
     initialize();
-    
-    /* Registra entrada de maneira não bloqueante */
-    nodelay(stdscr, 1);
+
     /* Detecta e regista os limites do terminal */
     getmaxyx(stdscr, max_y, max_x);
 
-    /* Determina a posição inicial do alien e sua direcao */
-    alien_x = 10;
-    alien_y = 3;
-	direction = 1;
+    /* Registra entrada de maneira não bloqueante */
+    nodelay(stdscr, 1);
 
-    /* Determina a posição inicial da nave */
-    player_x = (max_x/2) - 3;
-    player_y = max_y - 3;
+	/* Define o formato do jogador e do tiro */
+	player.top_row = "  __|__  ";
+	player.bottom_row = " |_____| ";
+    player.bullet = "|";
+	player.already_fired = 0;
+
+	/* Define o formato do alien e do tiro */
+	alien.top_row = "||/=\\||", 
+	alien.bottom_row = " |\\_/| ";
+    alien.bullet = "|";
+	alien.already_fired = 0;   
+
+    /* Determina a posição inicial* da nave */
+    player.player_x = (max_x/2) - 3;
+    player.player_y = max_y - 3;
+
+    /* Determina a posição inicial do alien e sua direcao */
+    alien.alien_x = 10;
+    alien.alien_y = 3;
+	alien.direction = 1;
 
     /* Imprime a posição inicial do alien */
-    mvprintw(alien_y-1, alien_x, alien_01);
-    mvprintw(alien_y, alien_x, alien_02);
+    mvprintw(alien.alien_y-1, alien.alien_x, alien.top_row);
+    mvprintw(alien.alien_y, alien.alien_x, alien.bottom_row);
 
     /* Imprime a posição inicial da nave */
-    mvprintw(player_y-1, player_x, player_01);
-    mvprintw(player_y, player_x, player_02);
+    mvprintw(player.player_y-1, player.player_x, player.top_row);
+    mvprintw(player.player_y, player.player_x, player.bottom_row);
 
     /* Executa até pressionar a tecla Esc */
     execute_until_esc();

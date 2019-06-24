@@ -17,48 +17,52 @@ void player_control(){
 
         /* Se for a setinha esquerda, anda com o conjunto pra esquerda */
         case LEFT_ARROW_KEY:
-            if (player_x > 0){
-                move(player_y, 0);
+            if (player.player_x > 0){
+                move(player.player_y, 0);
                 wclrtoeol(stdscr);
-                move(player_y-1, 0);
+                move(player.player_y-1, 0);
                 wclrtoeol(stdscr);
-                player_x--;
+                player.player_x--;
             }
             break;
 
         /* Se for a setinha direita, anda com o conjunto pra direita */
         case RIGHT_ARROW_KEY:
-            if (player_x < max_x - PLAYER_02_SIZE){
-                move(player_y, 0);
+            if (player.player_x < max_x - PLAYER_BOTTOM_ROW_SIZE){
+                move(player.player_y, 0);
                 wclrtoeol(stdscr);
-                move(player_y-1, 0);
+                move(player.player_y-1, 0);
                 wclrtoeol(stdscr);
-                player_x++;
+                player.player_x++;
             }
             break;
         default:
             break;
         }
         //refresh();
-        mvprintw(player_y-1, player_x, player_01);
-        mvprintw(player_y, player_x, player_02);
+        mvprintw(player.player_y-1, player.player_x, player.top_row);
+        mvprintw(player.player_y, player.player_x, player.bottom_row);
 }
 
 void move_alien() {
-
 	/* Apaga a posição ataual do alien */
-	move (alien_y, alien_x);
+	move (alien.alien_y, alien.alien_x);
 	wclrtoeol (stdscr);
-	move (alien_y-1, alien_x);
+	move (alien.alien_y-1, alien.alien_x);
 	wclrtoeol (stdscr);
 
 	/* movimento do alien */
-	if ((alien_x+direction)>=(max_x-ALIEN_01_SIZE) || (alien_x+direction)<0)
-		direction *= -1;
-	alien_x += direction;
+	if ((alien.alien_x+alien.direction)>=(max_x-ALIEN_TOP_ROW_SIZE) || (alien.alien_x+alien.direction)<0) {
+		alien.direction *= -1;
+		if ((alien.alien_y+1)<(player.player_y-1))
+			alien.alien_y += 1;
+		else
+			quit();
+	}
+	alien.alien_x += alien.direction;
 
 	/* imprime o alien na tela novamente */
 	//refresh();
-	mvprintw (alien_y-1, alien_x, alien_01);
-	mvprintw (alien_y, alien_x, alien_02);
+	mvprintw (alien.alien_y-1, alien.alien_x, alien.top_row);
+	mvprintw (alien.alien_y, alien.alien_x, alien.bottom_row);
 }
