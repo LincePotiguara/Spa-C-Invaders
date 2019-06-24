@@ -5,20 +5,31 @@
 #include "sprites.h"
 
 /* Executa até pressionar a tecla Esc */
-void execute_until_esc() {
-    /* Quantidade de inimigos por linha e de linhas de inimigos*/
-    int enemy_qty = 11;
-    int enemy_line = 5;
+void execute_until_esc(
+        struct Tplayer *player, 
+        int max_x, int 
+        enemy_qty, 
+        int enemy_line, 
+        char *enemy_sprite
+    ) {
+    /* Imprime a posição inicial da wave de inimigos */
+    print_wave(1, 1, enemy_qty, enemy_line, enemy_sprite, player, max_x);
 
-    /*Imprime a posição inicial da wave de inimigos*/
-    print_wave(1, 1, enemy_qty, enemy_line, enemy_type1);
-
-    /*Move a wave de inimigos até 2 linhas antes do jogador*/
-    for(int line = 1; line < player_y-enemy_line - 6; line++) {
-      move_wave(line, enemy_qty, enemy_line, max_x, 250*100, enemy_type1);
+    /* Move a wave de inimigos até 2 linhas antes do jogador */
+    for(int line = 1; line < (player->player_y)-enemy_line-6; line++) {
+        move_wave(
+            line, enemy_qty,
+            enemy_line, 
+            max_x,
+            2.5*1000, 
+            enemy_sprite, 
+            player
+            );
     }
     while (1) {
         /* Função responsável pelo controle do jogador */
-        player_control();
+        player_control(player, max_x);
+        /* Função responsável por atualizar a tela */
+        print_all(player);
 	}
 }

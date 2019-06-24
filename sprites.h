@@ -7,18 +7,21 @@ extern char *enemy_type1;
 void print_wave(
     int a,
     int b,
-    int enemy_qty, 
-    int enemy_line, 
-    char *enemy_sprite
+    int enemy_qty,
+    int enemy_line,
+    char *enemy_sprite,
+    struct Tplayer *player,
+    int max_x
 );
 
 void move_wave(
     int a,
-    int enemy_qty, 
-    int enemy_line, 
-    int max_x, 
-    int speed, 
-    char *enemy_sprite
+    int enemy_qty,
+    int enemy_line,
+    int max_x,
+    int speed,
+    char *enemy_sprite,
+    struct Tplayer *player
 );
 
 #endif
