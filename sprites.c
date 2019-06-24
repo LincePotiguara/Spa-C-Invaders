@@ -49,7 +49,6 @@ void move_wave(
 
     /* Se a linha é ímpar, a wave está no canto esquerdo */
     if(a%2 == 1) {
-
         int last = 5*enemy_qty-1;
 
         /* Apaga os elementos que sobraram da wave na sua
@@ -70,11 +69,11 @@ void move_wave(
             if(i%10 == 0) {
                 last++;
             }
+            refresh();
             usleep(speed);
         }
     /* A linha é par, a wave está no canto direito */
     } else {
-
         int first = max_x-(5*enemy_qty)+2;
 
         /* Apaga os elementos que sobraram da wave na sua
@@ -99,6 +98,7 @@ void move_wave(
                 player, 
                 max_x
             );
+            refresh();
             usleep(speed);
         }
     }
