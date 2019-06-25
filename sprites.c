@@ -69,12 +69,13 @@ void move_wave(
             );
             if(i%10 == 0) {
                 last++;
-
+            }
+            if(i%2) {
+                /* Velocidade da bala */
                 player->bullet_y--;
                 if (player->bullet_y < 0) {
                     player->already_fired = 0;
                 }
-
             }
 
             refresh();
@@ -107,15 +108,13 @@ void move_wave(
                 max_x
             );
 
-            if(i%10 == 0) {
-
+            if(i%2) {
+                /* Velocidade da bala */
                 player->bullet_y--;
                 if (player->bullet_y < 0) {
                     player->already_fired = 0;
                 }
-
             }
-
             refresh();
             usleep(speed);
         }

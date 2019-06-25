@@ -23,7 +23,7 @@ void execute_until_esc(
            line, enemy_qty,
            enemy_line,
            max_x,
-           2.5*1000,
+           100*1000,
            enemy_sprite,
            player
            );
