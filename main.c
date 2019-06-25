@@ -94,5 +94,5 @@ void print_all(struct Tplayer *player) {
     move(0, 0);
     wclrtoeol(stdscr);
     refresh();
-    usleep(30*1000);
+    //usleep(30*1000);
 }

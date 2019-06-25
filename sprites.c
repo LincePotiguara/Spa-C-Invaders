@@ -28,6 +28,7 @@ void print_wave(
             }
             refresh();
             player_control(player, max_x);
+            print_all(player);
 
         }
     }
@@ -59,16 +60,23 @@ void move_wave(
         * canto direito, com intervalo entre as impressões */
         for(i = 1; last <= max_x; i++) {
             print_wave(
-                a, 
-                i, 
-                enemy_qty, 
-                enemy_line, 
-                enemy_sprite, 
+                a,
+                i,
+                enemy_qty,
+                enemy_line,
+                enemy_sprite,
                 player, max_x
             );
             if(i%10 == 0) {
                 last++;
+
+                player->bullet_y--;
+                if (player->bullet_y < 0) {
+                    player->already_fired = 0;
+                }
+
             }
+
             refresh();
             usleep(speed);
         }
@@ -80,24 +88,34 @@ void move_wave(
         * última passagem*/
         print_wave(
             a -1,
-            10*(first+1), 
-            enemy_qty, 
-            enemy_line, 
-            "   ", 
+            10*(first+1),
+            enemy_qty,
+            enemy_line,
+            "   ",
             player, max_x
         );
         /* Imprime a wave até o primeiro elemento chegar no
         * canto esquerdo, com intervalo entre as impressões */
         for(i = first*10 + 9; i >= 1; i--) {
             print_wave(
-                a, 
-                i, 
-                enemy_qty, 
-                enemy_line, 
-                enemy_sprite, 
-                player, 
+                a,
+                i,
+                enemy_qty,
+                enemy_line,
+                enemy_sprite,
+                player,
                 max_x
             );
+
+            if(i%10 == 0) {
+
+                player->bullet_y--;
+                if (player->bullet_y < 0) {
+                    player->already_fired = 0;
+                }
+
+            }
+
             refresh();
             usleep(speed);
         }
