@@ -11,7 +11,9 @@ void print_wave(
         int enemy_line,
         char *enemy_sprite,
         struct Tplayer *player,
-        int max_x
+        int max_x,
+        int first,
+        int line
     ) {
     b = b/10;
     int i, j;
@@ -28,7 +30,7 @@ void print_wave(
             }
             refresh();
             player_control(player, max_x);
-            print_all(player);
+            print_all(player, first, a);
 
         }
     }
@@ -46,15 +48,26 @@ void move_wave(
         struct Tplayer *player
     ) {
 
-    int i;
+    int i, last, first;
 
     /* Se a linha é ímpar, a wave está no canto esquerdo */
     if(a%2 == 1) {
-        int last = 5*enemy_qty-1;
+        last = 5*enemy_qty-1;
+        first = 1;
 
         /* Apaga os elementos que sobraram da wave na sua
         * última passagem */
-        print_wave(a-1, 1, enemy_qty, enemy_line, "   ", player, max_x);
+        print_wave(
+            a-1, 
+            1, 
+            enemy_qty, 
+            enemy_line, 
+            "   ", 
+            player, 
+            max_x, 
+            first, 
+            a
+        );
 
         /* Imprime a wave até o último elemento chegar no
         * canto direito, com intervalo entre as impressões */
@@ -65,10 +78,14 @@ void move_wave(
                 enemy_qty,
                 enemy_line,
                 enemy_sprite,
-                player, max_x
+                player, 
+                max_x,
+                first,
+                a
             );
             if(i%10 == 0) {
                 last++;
+                first++;
             }
             if(i%2) {
                 /* Velocidade da bala */
@@ -83,7 +100,8 @@ void move_wave(
         }
     /* A linha é par, a wave está no canto direito */
     } else {
-        int first = max_x-(5*enemy_qty)+2;
+        first = max_x-(5*enemy_qty)+2;
+        last = max_x;
 
         /* Apaga os elementos que sobraram da wave na sua
         * última passagem*/
@@ -93,7 +111,10 @@ void move_wave(
             enemy_qty,
             enemy_line,
             "   ",
-            player, max_x
+            player, 
+            max_x,
+            first,
+            a
         );
         /* Imprime a wave até o primeiro elemento chegar no
         * canto esquerdo, com intervalo entre as impressões */
@@ -105,7 +126,9 @@ void move_wave(
                 enemy_line,
                 enemy_sprite,
                 player,
-                max_x
+                max_x,
+                first,
+                a
             );
 
             if(i%2) {

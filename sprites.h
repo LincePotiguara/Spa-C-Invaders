@@ -11,7 +11,9 @@ void print_wave(
     int enemy_line,
     char *enemy_sprite,
     struct Tplayer *player,
-    int max_x
+    int max_x,
+    int first,
+    int line
 );
 
 void move_wave(
