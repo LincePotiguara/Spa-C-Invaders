@@ -68,12 +68,83 @@ void move_wave(
         struct Tplayer *player
     ) {
 
-    int i, last, first;
+    int i, j, last_diff = 0, first_diff = 0;
+
+    /*Controlador de colunas existentes*/
+    int columns_alive[ENEMY_QUANTITY];
+
+    /*Inicialização do controlador das colunas*/
+    for(i = 0; i < ENEMY_QUANTITY; i++){
+
+         columns_alive[i] = 0;
+    }
+
+    /*Verificar quais colunas ainda existem*/
+    for(i = 0; i < ENEMY_LINES; i++){
+       for(j = 0; j < ENEMY_QUANTITY; j++){
+
+         if(enemy_matrix[i][j] == 1){
+           columns_alive[j] = 1;
+         }
+       }
+    }
+
+    /*Calcula a diferença entre o último alien da wave original e da atual*/
+    for(i = ENEMY_QUANTITY-1; i >= 0; i--){
+
+      if(i == ENEMY_QUANTITY-1){
+
+        if(columns_alive[ENEMY_QUANTITY-1] == 0){
+            last_diff += 5;
+
+        }else {
+
+          break;
+        }
+
+      } else if(columns_alive[i+1] == 0){
+
+        if(columns_alive[i] == 0){
+            last_diff += 5;
+
+        } else {
+
+          break;
+        }
+      }
+
+    }
+
+    /*Calcula a diferença entre o primeiro alien da wave original e da atual*/
+    for(i = 0; i < ENEMY_QUANTITY; i++){
+
+      if(i == 0){
+
+        if(columns_alive[0] == 0){
+            first_diff += 5;
+
+        }else {
+
+          break;
+        }
+
+      } else if(columns_alive[i-1] == 0){
+
+        if(columns_alive[i] == 0){
+            first_diff += 5;
+
+        } else {
+
+          break;
+        }
+      }
+
+    }
 
     /* Se a linha é ímpar, a wave está no canto esquerdo */
     if(a%2 == 1) {
-        last = 5*enemy_qty-1;
-        first = 0;
+        int first = (0 - first_diff);
+        int last = first + (5*enemy_qty-2) - last_diff;
 
         /* Apaga os elementos que sobraram da wave na sua
         * última passagem */
@@ -91,7 +162,7 @@ void move_wave(
 
         /* Imprime a wave até o último elemento chegar no
         * canto direito, com intervalo entre as impressões */
-        for(i = 1; last <= max_x; i++) {
+        for(i = first*10; last <= max_x; i++) {
             print_wave(
                 a,
                 i,
@@ -118,10 +189,12 @@ void move_wave(
             refresh();
             usleep(speed);
         }
+
     /* A linha é par, a wave está no canto direito */
     } else {
-        first = max_x-(5*enemy_qty)+2;
-        last = max_x;
+        int last = max_x - last_diff;
+        int first = max_x - (5*enemy_qty-2) + last_diff;
+
 
         /* Apaga os elementos que sobraram da wave na sua
         * última passagem*/
@@ -136,9 +209,10 @@ void move_wave(
             first,
             a
         );
+
         /* Imprime a wave até o primeiro elemento chegar no
         * canto esquerdo, com intervalo entre as impressões */
-        for(i = first*10 + 9; i >= 1; i--) {
+        for(i = first*10; i >= (0-first_diff)*10; i--) {
             print_wave(
                 a,
                 i,
