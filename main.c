@@ -11,8 +11,14 @@
 
 /* Define o player */
 struct Tplayer player;
+
+/* Define os inimigos */
+struct Tenemy alien;
+
+/* Pontuação */
 unsigned int score = 0, hiscore = 0;
 
+/* Matriz que guarda o estado dos inimigos */
 int enemy_matrix[ENEMY_LINES][ENEMY_QUANTITY];
 
 /* Variáveis responsáveis pela detecção do teclado */
@@ -38,6 +44,10 @@ int main(int argc, char **argv) {
     player.bullet = "|";
     player.already_fired = 0;
 
+    /* Define o formato dos inimigos */
+    alien.sprite = "***";
+    alien.blank = "   ";
+
     /* Determina a poisção inicial da nave */
     player.player_x = (max_x/2) - 3;
     player.player_y = max_y - 3;
@@ -47,20 +57,19 @@ int main(int argc, char **argv) {
     mvprintw(player.player_y, player.player_x, player.bottom_row);
     refresh();
 
-    /* Definições dos sprites dos inimigos */
-    char *enemy_type1 = "***";
-
     for(int i = 0; i < ENEMY_LINES; i++){
         for(int j = 0; j < ENEMY_QUANTITY; j++){
-
             enemy_matrix[i][j] = 1;
-
         }
-
     }
 
     /* Executa até pressionar a tecla Esc */
-    execute_until_esc(&player, max_x, ENEMY_QUANTITY, ENEMY_LINES, enemy_type1);
+    execute_until_esc(
+        &player, 
+        max_x, 
+        ENEMY_QUANTITY, 
+        ENEMY_LINES
+    );
 
     /* Libera a memória e finaliza o programa */
     quit();
@@ -89,7 +98,7 @@ void initialize(int *max_x, int *max_y) {
 }
 
 void save() {
-    WINDOW *f = fopen("save.dat", "a+");
+    FILE *f = fopen("save.dat", "a+");
     if(feof(f)) {
         /* Se não tiver nada salvo, salve */
         fwrite(&score, sizeof(unsigned int), 1, f);

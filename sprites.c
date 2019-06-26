@@ -9,7 +9,6 @@ void print_wave(
         int b,
         int enemy_qty,
         int enemy_line,
-        char *enemy_sprite,
         struct Tplayer *player,
         int max_x,
         int first,
@@ -22,8 +21,8 @@ void print_wave(
 
             if(enemy_matrix[i][j] == 1){
 
-              mvprintw((i*2)+a, (j*5)+b, enemy_sprite);
-              mvprintw((i*2)+a+1, (j*5)+b, enemy_sprite);
+              mvprintw((i*2)+a, (j*5)+b, alien.sprite);
+              mvprintw((i*2)+a+1, (j*5)+b, alien.sprite);
               if(a%2 == 1){
                   mvprintw((i*2)+(1*a), (j*5)+b-1, " ");
                   mvprintw((i*2)+(1*a)+1, (j*5)+b-1, " ");
@@ -35,8 +34,8 @@ void print_wave(
               refresh();
             } else {
 
-              mvprintw((i*2)+a, (j*5)+b, "   ");
-              mvprintw((i*2)+a+1, (j*5)+b, "   ");
+              mvprintw((i*2)+a, (j*5)+b, alien.blank);
+              mvprintw((i*2)+a+1, (j*5)+b, alien.blank);
               if(a%2 == 1){
                   mvprintw((i*2)+(1*a), (j*5)+b-1, " ");
                   mvprintw((i*2)+(1*a)+1, (j*5)+b-1, " ");
@@ -62,7 +61,6 @@ void move_wave(
         int enemy_line,
         int max_x,
         int speed,
-        char *enemy_sprite,
         struct Tplayer *player
     ) {
 
@@ -74,18 +72,8 @@ void move_wave(
         first = 0;
 
         /* Apaga os elementos que sobraram da wave na sua
-        * última passagem */
-        print_wave(
-            a-1,
-            1,
-            enemy_qty,
-            enemy_line,
-            "   ",
-            player,
-            max_x,
-            first,
-            a
-        );
+        * última passagem, apagando toda a tela */
+        wclear(stdscr);
 
         /* Imprime a wave até o último elemento chegar no
         * canto direito, com intervalo entre as impressões */
@@ -95,7 +83,6 @@ void move_wave(
                 i,
                 enemy_qty,
                 enemy_line,
-                enemy_sprite,
                 player,
                 max_x,
                 first,
@@ -122,18 +109,9 @@ void move_wave(
         last = max_x;
 
         /* Apaga os elementos que sobraram da wave na sua
-        * última passagem*/
-        print_wave(
-            a -1,
-            10*(first+1),
-            enemy_qty,
-            enemy_line,
-            "   ",
-            player,
-            max_x,
-            first,
-            a
-        );
+        * última passagem, apagando toda a tela */
+        wclear(stdscr);
+
         /* Imprime a wave até o primeiro elemento chegar no
         * canto esquerdo, com intervalo entre as impressões */
         for(i = first*10 + 9; i >= 1; i--) {
@@ -142,7 +120,6 @@ void move_wave(
                 i,
                 enemy_qty,
                 enemy_line,
-                enemy_sprite,
                 player,
                 max_x,
                 first,
