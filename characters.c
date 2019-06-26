@@ -22,6 +22,7 @@ void player_control(struct Tplayer *player, int max_x) {
                 player->bullet_x = player->player_x+(PLAYER_TOP_ROW_SIZE)/2;
                 player->bullet_y = player->player_y-2;
                 player->already_fired = 1;
+                puts("\a");
             }
             break;
 

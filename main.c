@@ -10,11 +10,7 @@
 /* Define o player */
 struct Tplayer player;
 
-/* Quantidade de inimigos por linha e de linhas de inimigos */
-#define enemy_qty 11
-#define enemy_line 5
-
-int enemy_matrix[enemy_line][enemy_qty];
+int enemy_matrix[ENEMY_LINES][ENEMY_QUANTITY];
 
 /* Variáveis responsáveis pela detecção do teclado */
 int ch;
@@ -29,7 +25,7 @@ int main(int argc, char **argv) {
     /* Registra entrada de maneira não bloqueante */
     nodelay(stdscr, 1);
 
-    animation(max_x, max_y);
+    //animation(max_x, max_y);
 
     /* Define o formado do jogador e do tiro */
     player.top_row = "  __|__  ";
@@ -49,8 +45,8 @@ int main(int argc, char **argv) {
     /* Definições dos sprites dos inimigos */
     char *enemy_type1 = "***";
 
-    for(int i = 0; i < enemy_line; i++){
-        for(int j = 0; j < enemy_qty; j++){
+    for(int i = 0; i < ENEMY_LINES; i++){
+        for(int j = 0; j < ENEMY_QUANTITY; j++){
 
             enemy_matrix[i][j] = 1;
 
@@ -59,7 +55,7 @@ int main(int argc, char **argv) {
     }
 
     /* Executa até pressionar a tecla Esc */
-    execute_until_esc(&player, max_x, enemy_qty, enemy_line, enemy_type1);
+    execute_until_esc(&player, max_x, ENEMY_QUANTITY, ENEMY_LINES, enemy_type1);
 
     /* Libera a memória e finaliza o programa */
     quit();
@@ -92,15 +88,15 @@ void quit() {
     delwin(stdscr);
     endwin();
 
-    for(int i = 0; i < enemy_line; i++){
-        for(int j = 0; j < enemy_qty; j++){
+    for(int i = 0; i < ENEMY_LINES; i++){
+        for(int j = 0; j < ENEMY_QUANTITY; j++){
 
             printf("%d ", enemy_matrix[i][j]);
 
         }
         puts ("");
     }
-    
+
     exit(0);
 }
 
@@ -115,11 +111,12 @@ void print_all(struct Tplayer *player, int first, int line) {
     getyx(stdscr, y, x);
     mvprintw(player->player_y-1, player->player_x, player->top_row);
     mvprintw(player->player_y, player->player_x, player->bottom_row);
-    at_position = mvinch(player->bullet_y-1, player->bullet_x);
+    at_position = mvinch(player->bullet_y, player->bullet_x);
     if(at_position == '*') {
         // if(alien_x >= 5 ) printf("alien_x e maior que 5\\\\n");
         // if(alien_y >= 11 ) printf("alien_x e maior que 11\\\\n");
         enemy_matrix[alien_x][alien_y] = 0;
+        player->bullet_y = -1;
 
     }
     mvprintw(player->bullet_y-1, player->bullet_x, player->bullet);
@@ -154,7 +151,7 @@ void animation(int max_x, int max_y){
     mvprintw(max_y-0, max_x/2 - 15, "                          ");
     refresh();
     usleep(1500000);
-    
+
     clear();
     refresh();
 

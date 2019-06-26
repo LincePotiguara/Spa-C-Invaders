@@ -3,6 +3,8 @@
 #include "main.h"
 #include "sprites.h"
 
+extern enemy_matrix[ENEMY_LINES][ENEMY_QUANTITY];
+
 /*Função para mostrar a wave na tela e apagar a última wave mostrada*/
 void print_wave(
         int a,
@@ -19,16 +21,34 @@ void print_wave(
     int i, j;
     for(i = 0; i < enemy_line; i++) {
         for(j = 0; j < enemy_qty; j++) {
-            mvprintw((i*2)+a, (j*5)+b, enemy_sprite);
-            mvprintw((i*2)+a+1, (j*5)+b, enemy_sprite);
-            if(a%2 == 1){
-                mvprintw((i*2)+(1*a), (j*5)+b-1, " ");
-                mvprintw((i*2)+(1*a)+1, (j*5)+b-1, " ");
+
+            if(enemy_matrix[i][j] == 1){
+
+              mvprintw((i*2)+a, (j*5)+b, enemy_sprite);
+              mvprintw((i*2)+a+1, (j*5)+b, enemy_sprite);
+              if(a%2 == 1){
+                  mvprintw((i*2)+(1*a), (j*5)+b-1, " ");
+                  mvprintw((i*2)+(1*a)+1, (j*5)+b-1, " ");
+              } else {
+                  mvprintw((i*2)+(1*a), (j*5)+b+3, " ");
+                  mvprintw((i*2)+(1*a)+1, (j*5)+b+3, " ");
+              }
+
+              refresh();
             } else {
-                mvprintw((i*2)+(1*a), (j*5)+b+3, " ");
-                mvprintw((i*2)+(1*a)+1, (j*5)+b+3, " ");
+
+              mvprintw((i*2)+a, (j*5)+b, "   ");
+              mvprintw((i*2)+a+1, (j*5)+b, "   ");
+              if(a%2 == 1){
+                  mvprintw((i*2)+(1*a), (j*5)+b-1, " ");
+                  mvprintw((i*2)+(1*a)+1, (j*5)+b-1, " ");
+              } else {
+                  mvprintw((i*2)+(1*a), (j*5)+b+3, " ");
+                  mvprintw((i*2)+(1*a)+1, (j*5)+b+3, " ");
+              }
+
             }
-            refresh();
+
             player_control(player, max_x);
             print_all(player, first, a);
 
@@ -58,14 +78,14 @@ void move_wave(
         /* Apaga os elementos que sobraram da wave na sua
         * última passagem */
         print_wave(
-            a-1, 
-            1, 
-            enemy_qty, 
-            enemy_line, 
-            "   ", 
-            player, 
-            max_x, 
-            first, 
+            a-1,
+            1,
+            enemy_qty,
+            enemy_line,
+            "   ",
+            player,
+            max_x,
+            first,
             a
         );
 
@@ -78,7 +98,7 @@ void move_wave(
                 enemy_qty,
                 enemy_line,
                 enemy_sprite,
-                player, 
+                player,
                 max_x,
                 first,
                 a
@@ -111,7 +131,7 @@ void move_wave(
             enemy_qty,
             enemy_line,
             "   ",
-            player, 
+            player,
             max_x,
             first,
             a

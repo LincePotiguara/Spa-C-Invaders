@@ -6,6 +6,10 @@
 #define PLAYER_TOP_ROW_SIZE 8
 #define PLAYER_BOTTOM_ROW_SIZE 8
 
+/* Quantidade de inimigos por linha e de linhas de inimigos */
+#define ENEMY_QUANTITY 11
+#define ENEMY_LINES 5
+
 /* Struct responsável pelo jogador */
 struct Tplayer {
     char *top_row;
