@@ -73,7 +73,7 @@ void move_wave(
     /* Se a linha é ímpar, a wave está no canto esquerdo */
     if(a%2 == 1) {
         last = 5*enemy_qty-1;
-        first = 1;
+        first = 0;
 
         /* Apaga os elementos que sobraram da wave na sua
         * última passagem */
