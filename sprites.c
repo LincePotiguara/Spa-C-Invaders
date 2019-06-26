@@ -3,8 +3,6 @@
 #include "main.h"
 #include "sprites.h"
 
-extern enemy_matrix[ENEMY_LINES][ENEMY_QUANTITY];
-
 /*Função para mostrar a wave na tela e apagar a última wave mostrada*/
 void print_wave(
         int a,
