@@ -2,7 +2,7 @@
 CFLAGS=-Wall -pedantic
 # Linker flag
 LFLAGS=-lncurses
-SOURCES=main.c characters.c game_loop.c sprites.c
+SOURCES=main.c characters.c game_loop.c sprites.c animation.c
 EXEC=spac
 
 default: all
