@@ -25,7 +25,7 @@ int main(int argc, char **argv) {
     /* Registra entrada de maneira não bloqueante */
     nodelay(stdscr, 1);
 
-    animation(max_x, max_y);
+    //animation(max_x, max_y);
 
     /* Define o formado do jogador e do tiro */
     player.top_row = "  __|__  ";
