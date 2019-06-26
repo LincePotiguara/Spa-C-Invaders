@@ -24,6 +24,13 @@ struct Tplayer {
 
     int already_fired;
 };
+
+/* Struct dos sprites dos inimigos */
+struct Tenemy {
+    char *sprite;
+    char *blank;
+};
+
 //typedef struct _Tplayer Tplayer;
 
 void print_all(struct Tplayer *player, int first, int last);

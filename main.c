@@ -11,16 +11,22 @@
 
 /* Define o player */
 struct Tplayer player;
+
+/* Define os inimigos */
+struct Tenemy alien;
+
+/* Pontuação */
 unsigned int score = 0, hiscore = 0;
 
+/* Matriz que guarda o estado dos inimigos */
 int enemy_matrix[ENEMY_LINES][ENEMY_QUANTITY];
 
 /* Variáveis responsáveis pela detecção do teclado */
 int ch;
-FILE* file;
+// FILE* file;
 
 int main(int argc, char **argv) {
-    file = fopen("debug.log", "w");
+    // file = fopen("debug.log", "w");
     /* Coordenadas dos limites do terminal */
     int max_x, max_y;
 
@@ -31,12 +37,18 @@ int main(int argc, char **argv) {
     nodelay(stdscr, 1);
 
     //animation(max_x, max_y);
+    /* Recupera o hiscore */
+    save();
 
     /* Define o formado do jogador e do tiro */
     player.top_row = "  __|__  ";
     player.bottom_row = " |_____| ";
     player.bullet = "|";
     player.already_fired = 0;
+
+    /* Define o formato dos inimigos */
+    alien.sprite = "***";
+    alien.blank = "   ";
 
     /* Determina a poisção inicial da nave */
     player.player_x = (max_x/2) - 3;
@@ -47,20 +59,19 @@ int main(int argc, char **argv) {
     mvprintw(player.player_y, player.player_x, player.bottom_row);
     refresh();
 
-    /* Definições dos sprites dos inimigos */
-    char *enemy_type1 = "***";
-
     for(int i = 0; i < ENEMY_LINES; i++){
         for(int j = 0; j < ENEMY_QUANTITY; j++){
-
             enemy_matrix[i][j] = 1;
-
         }
-
     }
 
     /* Executa até pressionar a tecla Esc */
-    execute_until_esc(&player, max_x, ENEMY_QUANTITY, ENEMY_LINES, enemy_type1);
+    execute_until_esc(
+        &player, 
+        max_x, 
+        ENEMY_QUANTITY, 
+        ENEMY_LINES
+    );
 
     /* Libera a memória e finaliza o programa */
     quit();
@@ -89,20 +100,22 @@ void initialize(int *max_x, int *max_y) {
 }
 
 void save() {
-    WINDOW *f = fopen("save.dat", "a+");
-    if(feof(f)) {
-        /* Se não tiver nada salvo, salve */
-        fwrite(&score, sizeof(unsigned int), 1, f);
-    } else {
-        /* Senão, leia o conteúdo */
-        fread(&score, sizeof(unsigned int), 1, f);
-    }
-    if(score > hiscore) {
-        /* Atualiza o hi-score */
-        rewind(f);
-        fwrite(&score, sizeof(unsigned int), 1, f);
-    }
+    FILE *f;
+    unsigned int stored_score;
+    f = fopen("save.dat", "r+");
 
+    /* Se não existir, crie */
+    if(f == NULL) {
+        f = fopen("save.dat", "w+");
+        if(f == NULL) return;
+    }
+    fread(&stored_score, sizeof(unsigned int), 1, f);
+    if(hiscore > stored_score) {
+        rewind(f);
+        fwrite(&hiscore, sizeof(unsigned int), 1, f);
+    } else {
+        hiscore = stored_score;
+    }
     fclose(f);
 }
 /* Sai da tela */
@@ -110,16 +123,16 @@ void quit() {
     delwin(stdscr);
     endwin();
 
-    for(int i = 0; i < ENEMY_LINES; i++){
-        for(int j = 0; j < ENEMY_QUANTITY; j++){
+    // for(int i = 0; i < ENEMY_LINES; i++){
+    //     for(int j = 0; j < ENEMY_QUANTITY; j++){
 
-            printf("%d ", enemy_matrix[i][j]);
+    //         printf("%d ", enemy_matrix[i][j]);
 
-        }
-        puts ("");
-    }
+    //     }
+    //     puts ("");
+    // }
     save();
-    fclose(file);
+    // fclose(file);
 
     exit(0);
 }
@@ -139,10 +152,12 @@ void print_all(struct Tplayer *player, int first, int line) {
 
     /* Checa a colisão com o inimigo */
     if(at_position == '*') {
-        debug_matrix();
+        // debug_matrix();
         // if(alien_x >= 5 ) printf("alien_x e maior que 5\\\\n");
         // if(alien_y >= 11 ) printf("alien_x e maior que 11\\\\n");
         enemy_matrix[alien_x][alien_y] = 0;
+        score++;
+        if(score > hiscore) hiscore = score;
         mvprintw(player->bullet_y-1, player->bullet_x, " ");
         player->bullet_y = -1;
 
@@ -158,12 +173,12 @@ void print_all(struct Tplayer *player, int first, int line) {
     //usleep(30*1000);
 }
 
-void debug_matrix() {
-    for(int i = 0; i < ENEMY_LINES; i++){
-        for(int j = 0; j < ENEMY_QUANTITY; j++){
-            fprintf(file, "%d ", enemy_matrix[i][j]);
-        }
-        fprintf(file, "\n");
-    }
-    fprintf(file, "%d\n", player.bullet_y);
-}
+// void debug_matrix() {
+//     for(int i = 0; i < ENEMY_LINES; i++){
+//         for(int j = 0; j < ENEMY_QUANTITY; j++){
+//             fprintf(file, "%d ", enemy_matrix[i][j]);
+//         }
+//         fprintf(file, "\n");
+//     }
+//     fprintf(file, "%d\n", player.bullet_y);
+// }

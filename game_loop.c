@@ -12,13 +12,22 @@ void execute_until_esc(
         struct Tplayer *player,
         int max_x, int
         enemy_qty,
-        int enemy_line,
-        char *enemy_sprite
+        int enemy_line
     ) {
     /* Imprime a posição inicial da wave de inimigos */
-    print_wave(1, 1, enemy_qty, enemy_line, enemy_sprite, player, max_x, 1, 1);
+    print_wave(
+        1,
+        1, 
+        enemy_qty, 
+        enemy_line, 
+        player, 
+        max_x, 
+        1, 
+        1
+    );
 
     /* Move a wave de inimigos até 2 linhas antes do jogador */
+
     int line = ENEMY_LINES, last_destroyed = 0, waves = 0;
     int end = player->player_y-7;
     while(line <= end){
@@ -30,8 +39,7 @@ void execute_until_esc(
            enemy_qty,
            enemy_line,
            max_x,
-           5*1000,
-           enemy_sprite,
+           20*1000,
            player
            );
 
