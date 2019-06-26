@@ -124,6 +124,7 @@ void print_all(struct Tplayer *player, int first, int line) {
         // if(alien_x >= 5 ) printf("alien_x e maior que 5\\\\n");
         // if(alien_y >= 11 ) printf("alien_x e maior que 11\\\\n");
         enemy_matrix[alien_x][alien_y] = 0;
+        mvprintw(player->bullet_y-1, player->bullet_x, " ");
         player->bullet_y = -1;
 
     }
