@@ -5,7 +5,7 @@
 #include "main.h"
 #include "sprites.h"
 
-extern enemy_matrix[ENEMY_LINES][ENEMY_QUANTITY];
+extern int enemy_matrix[ENEMY_LINES][ENEMY_QUANTITY];
 
 /* Executa até pressionar a tecla Esc */
 void execute_until_esc(
