@@ -6,6 +6,8 @@
 #include "sprites.h"
 #include "characters.h"
 #include "game_loop.h"
+#include <stdio.h>
+
 
 /* Define o player */
 struct Tplayer player;
@@ -14,8 +16,10 @@ int enemy_matrix[ENEMY_LINES][ENEMY_QUANTITY];
 
 /* Variáveis responsáveis pela detecção do teclado */
 int ch;
+FILE* file;
 
 int main(int argc, char **argv) {
+    file = fopen("debug.log", "w");
     /* Coordenadas dos limites do terminal */
     int max_x, max_y;
 
@@ -25,7 +29,7 @@ int main(int argc, char **argv) {
     /* Registra entrada de maneira não bloqueante */
     nodelay(stdscr, 1);
 
-    animation(max_x, max_y);
+    // animation(max_x, max_y);
 
     /* Define o formado do jogador e do tiro */
     player.top_row = "  __|__  ";
@@ -96,6 +100,7 @@ void quit() {
         }
         puts ("");
     }
+    fclose(file);
 
     exit(0);
 }
@@ -112,7 +117,10 @@ void print_all(struct Tplayer *player, int first, int line) {
     mvprintw(player->player_y-1, player->player_x, player->top_row);
     mvprintw(player->player_y, player->player_x, player->bottom_row);
     at_position = mvinch(player->bullet_y, player->bullet_x);
+
+    /* Checa a colisão com o inimigo */
     if(at_position == '*') {
+        debug_matrix();
         // if(alien_x >= 5 ) printf("alien_x e maior que 5\\\\n");
         // if(alien_y >= 11 ) printf("alien_x e maior que 11\\\\n");
         enemy_matrix[alien_x][alien_y] = 0;
@@ -128,4 +136,14 @@ void print_all(struct Tplayer *player, int first, int line) {
     // wclrtoeol(stdscr);
     // refresh();
     //usleep(30*1000);
+}
+
+void debug_matrix() {
+    for(int i = 0; i < ENEMY_LINES; i++){
+        for(int j = 0; j < ENEMY_QUANTITY; j++){
+            fprintf(file, "%d ", enemy_matrix[i][j]);
+        }
+        fprintf(file, "\n");
+    }
+    fprintf(file, "%d\n", player.bullet_y);
 }
