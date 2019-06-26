@@ -151,6 +151,11 @@ void move_wave(
                 a
             );
 
+            if(i%10 == 0) {
+                last--;
+                first--;
+            }
+
             if(i%2) {
                 /* Velocidade da bala */
                 player->bullet_y--;
