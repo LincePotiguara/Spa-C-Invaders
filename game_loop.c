@@ -24,7 +24,7 @@ void execute_until_esc(
     );
 
     /* Move a wave de inimigos até 2 linhas antes do jogador */
-    int line = 0; int i;
+    int line = 0;
     for(line = 1; line < (player->player_y)-enemy_line-6; line++) {
 
        move_wave(

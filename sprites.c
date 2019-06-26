@@ -1,5 +1,6 @@
 #include <ncurses.h>
 #include <unistd.h>
+#include "characters.h"
 #include "main.h"
 #include "sprites.h"
 
