@@ -107,13 +107,14 @@ void move_wave(
                 last++;
                 first++;
             }
-            if(i%2) {
+            //if(i%2) {
+                /* Aumenta a taxa de atualização do projétil */
                 /* Velocidade da bala */
                 player->bullet_y--;
                 if (player->bullet_y < 0) {
                     player->already_fired = 0;
                 }
-            }
+           // }
 
             refresh();
             usleep(speed);

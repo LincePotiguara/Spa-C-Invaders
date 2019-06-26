@@ -11,6 +11,7 @@
 
 /* Define o player */
 struct Tplayer player;
+unsigned int score = 0, hiscore = 0;
 
 int enemy_matrix[ENEMY_LINES][ENEMY_QUANTITY];
 
@@ -87,6 +88,23 @@ void initialize(int *max_x, int *max_y) {
     curs_set(0);
 }
 
+void save() {
+    WINDOW *f = fopen("save.dat", "a+");
+    if(feof(f)) {
+        /* Se não tiver nada salvo, salve */
+        fwrite(&score, sizeof(unsigned int), 1, f);
+    } else {
+        /* Senão, leia o conteúdo */
+        fread(&score, sizeof(unsigned int), 1, f);
+    }
+    if(score > hiscore) {
+        /* Atualiza o hi-score */
+        rewind(f);
+        fwrite(&score, sizeof(unsigned int), 1, f);
+    }
+
+    fclose(f);
+}
 /* Sai da tela */
 void quit() {
     delwin(stdscr);
@@ -100,6 +118,7 @@ void quit() {
         }
         puts ("");
     }
+    save();
     fclose(file);
 
     exit(0);
