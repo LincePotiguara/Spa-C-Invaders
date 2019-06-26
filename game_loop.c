@@ -31,7 +31,7 @@ void execute_until_esc(
            line, enemy_qty,
            enemy_line,
            max_x,
-           0.020*1000,
+           20*1000,
            player
            );
     }
