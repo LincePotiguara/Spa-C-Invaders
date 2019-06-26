@@ -1,11 +1,11 @@
 #include <ncurses.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <string.h>
 #include "main.h"
 #include "sprites.h"
 #include "characters.h"
 #include "game_loop.h"
+#include "animation.h"
 #include <stdio.h>
 
 
@@ -67,9 +67,9 @@ int main(int argc, char **argv) {
 
     /* Executa até pressionar a tecla Esc */
     execute_until_esc(
-        &player, 
-        max_x, 
-        ENEMY_QUANTITY, 
+        &player,
+        max_x,
+        ENEMY_QUANTITY,
         ENEMY_LINES
     );
 

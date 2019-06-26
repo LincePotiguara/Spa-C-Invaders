@@ -17,12 +17,12 @@ void execute_until_esc(
     /* Imprime a posição inicial da wave de inimigos */
     print_wave(
         1,
-        1, 
-        enemy_qty, 
-        enemy_line, 
-        player, 
-        max_x, 
-        1, 
+        1,
+        enemy_qty,
+        enemy_line,
+        player,
+        max_x,
+        1,
         1
     );
 
@@ -39,7 +39,7 @@ void execute_until_esc(
            enemy_qty,
            enemy_line,
            max_x,
-           20*1000,
+           10*1000,
            player
            );
 
