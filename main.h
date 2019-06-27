@@ -6,11 +6,34 @@
 #define PLAYER_TOP_ROW_SIZE 8
 #define PLAYER_BOTTOM_ROW_SIZE 8
 
-void initialize();
+/* Quantidade de inimigos por linha e de linhas de inimigos */
+#define ENEMY_QUANTITY 3
+#define ENEMY_LINES 3
+
+/* Struct responsável pelo jogador */
+struct Tplayer {
+    char *top_row;
+    char *bottom_row;
+    char *bullet;
+
+    /* Coordenadas do jogador*/
+    int player_x, player_y;
+
+    /* Coordenadas do tiro do jogador */
+    int bullet_x, bullet_y;
+
+    int already_fired;
+};
+
+/* Struct dos sprites dos inimigos */
+struct Tenemy {
+    char *sprite;
+    char *blank;
+};
+
+//typedef struct _Tplayer Tplayer;
+
+void print_all(struct Tplayer *player, int first, int last);
 void quit();
-void execute_until_esc();
-void player_control();
-void player_shoot();
-void print_all();
-void print_wave(int a, int b, int enemy_qty, int enemy_line, char *enemy_sprite);
-void move_wave(int a, int enemy_qty, int enemy_line, int max_x, int speed, char *enemy_sprite);
+void initialize(int *max_x, int *max_y);
+void save();
