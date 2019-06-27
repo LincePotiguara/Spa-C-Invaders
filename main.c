@@ -104,12 +104,11 @@ void initialize(int *max_x, int *max_y) {
 void save() {
     FILE *f;
     unsigned int stored_score;
-    f = fopen("save.dat", "r+");
+    f = fopen("save.dat", "rb+");
 
     /* Se não existir, crie */
     if(f == NULL) {
         f = fopen("save.dat", "w+");
-        stored_score = 0;
         if(f == NULL) return;
     }
     fread(&stored_score, sizeof(unsigned int), 1, f);
