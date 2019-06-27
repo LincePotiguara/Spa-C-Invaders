@@ -49,12 +49,14 @@ void print_wave(
 
             player_control(player, max_x);
             print_all(player, first, a);
-            move(player->player_y+2, 0);
-            clrtoeol();
-            mvprintw(player->player_y+2, 0, "Pontuação: %d", score);
 
-        }
+        }        
+
     }
+
+    move(player->player_y+2, 0);
+    clrtoeol();
+    mvprintw(player->player_y+2, 0, "Pontuacao: %d", score);
 
 }
 

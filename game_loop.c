@@ -29,7 +29,7 @@ void execute_until_esc(
     /* Move a wave de inimigos até 2 linhas antes do jogador */
 
     int line = ENEMY_LINES, last_destroyed = 0, waves = 0;
-    int end = player->player_y-7;
+    int end = player->player_y-8;
     while(line <= end){
 
       int position = line - ENEMY_LINES + 1;
