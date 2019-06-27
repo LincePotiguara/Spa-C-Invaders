@@ -103,13 +103,17 @@ void initialize(int *max_x, int *max_y) {
 
 void save() {
     FILE *f;
-    unsigned int stored_score;
+    unsigned int stored_score = 0;
     f = fopen("save.dat", "rb+");
 
     /* Se não existir, crie */
     if(f == NULL) {
         f = fopen("save.dat", "wb+");
         if(f == NULL) return;
+    }
+    if(feof(f)) {
+        fwrite(&stored_score, sizeof(unsigned int), 1, f);
+        return;
     }
     fread(&stored_score, sizeof(unsigned int), 1, f);
     if(hiscore > stored_score) {
