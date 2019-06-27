@@ -3,7 +3,6 @@
 
 extern int ch;
 extern int player_x, player_y, max_x, max_y;
-//extern Tplayer;
 extern struct Tplayer player;
 
 void execute_until_esc(
