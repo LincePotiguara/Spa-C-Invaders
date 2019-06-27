@@ -42,8 +42,4 @@ void player_control(struct Tplayer *player, int max_x) {
         default:
             break;
         }
-    // player->bullet_y--;
-    // if (player->bullet_y < 0) {
-    //     player->already_fired = 0;
-    // }
 }

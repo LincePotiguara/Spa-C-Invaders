@@ -50,7 +50,7 @@ void print_wave(
             player_control(player, max_x);
             print_all(player, first, a);
 
-        }        
+        }
 
     }
 
@@ -187,6 +187,7 @@ void move_wave(
         int last = max_x - last_diff;
         int first = max_x - (5*enemy_qty-2) + last_diff;
 
+        /* Apaga os elementos que sobraram da wave na sua
         /*última passagem, apagando toda a tela */
         wclear(stdscr);
 
