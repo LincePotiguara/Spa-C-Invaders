@@ -5,7 +5,7 @@
 extern char *enemy_type1;
 extern struct Tenemy alien;
 extern int enemy_matrix[ENEMY_LINES][ENEMY_QUANTITY];
-extern unsigned int score;
+extern unsigned int score, hiscore;
 
 void print_wave(
     int a,

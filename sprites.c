@@ -56,7 +56,8 @@ void print_wave(
 
     move(player->player_y+2, 0);
     clrtoeol();
-    mvprintw(player->player_y+2, 0, "Pontuacao: %d", score);
+    mvprintw(player->player_y+1, 0, "Recorde: %d", hiscore);
+    mvprintw(player->player_y+2, 0, "Pontos: %d", score);
 
 }
 
