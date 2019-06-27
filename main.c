@@ -108,7 +108,7 @@ void save() {
 
     /* Se não existir, crie */
     if(f == NULL) {
-        f = fopen("save.dat", "w+");
+        f = fopen("save.dat", "wb+");
         if(f == NULL) return;
     }
     fread(&stored_score, sizeof(unsigned int), 1, f);
