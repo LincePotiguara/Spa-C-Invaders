@@ -28,7 +28,7 @@ void execute_until_esc(
 
     /* Move a wave de inimigos até 2 linhas antes do jogador */
 
-    int line = ENEMY_LINES, last_destroyed = 0, waves = 0;
+    int line = ENEMY_LINES, last_destroyed = 0;
     int end = player->player_y-8;
     while(line <= end){
 
@@ -69,9 +69,10 @@ void execute_until_esc(
 
        if(last_destroyed == ENEMY_LINES){
 
-         waves++;
-         line = ENEMY_LINES + waves;
-         last_destroyed = 0;
+         wclrtoeol(stdscr);
+         mvprintw( (player->player_y+3)/2 ,max_x/2 - 10, "Parabéns e obrigado!");
+         usleep(2000000);
+         quit();
 
        }
 

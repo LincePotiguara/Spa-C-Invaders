@@ -36,7 +36,7 @@ int main(int argc, char **argv) {
     /* Registra entrada de maneira não bloqueante */
     nodelay(stdscr, 1);
 
-    //animation(max_x, max_y);
+    animation(max_x, max_y);
     /* Recupera o hiscore */
     save();
 

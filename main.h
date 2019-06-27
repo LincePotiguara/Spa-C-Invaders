@@ -7,8 +7,8 @@
 #define PLAYER_BOTTOM_ROW_SIZE 8
 
 /* Quantidade de inimigos por linha e de linhas de inimigos */
-#define ENEMY_QUANTITY 11
-#define ENEMY_LINES 5
+#define ENEMY_QUANTITY 3
+#define ENEMY_LINES 3
 
 /* Struct responsável pelo jogador */
 struct Tplayer {

@@ -6,22 +6,22 @@
 void animation(int max_x, int max_y) {
 
     usleep(200000);
-    mvprintw(max_y-5, max_x/2 - 15 , "    __                    ");
+    mvprintw(max_y-6, max_x/2 - 16 , "    __                    ");
     refresh();
     usleep(200000);
-    mvprintw(max_y-4, max_x/2 - 15, "   / /   __  ______ _____ ");
+    mvprintw(max_y-5, max_x/2 - 16, "   / /   __  ______ _____ ");
     refresh();
     usleep(200000);
-    mvprintw(max_y-3, max_x/2 - 15, "  / /   / / / / __ `/ __ \\");
+    mvprintw(max_y-4, max_x/2 - 16, "  / /   / / / / __ `/ __ \\");
     refresh();
     usleep(200000);
-    mvprintw(max_y-2, max_x/2 - 15, " / /___/ /_/ / /_/ / / / /");
+    mvprintw(max_y-3, max_x/2 - 16, " / /___/ /_/ / /_/ / / / /");
     refresh();
     usleep(200000);
-    mvprintw(max_y-1, max_x/2 - 15, "/_____/\\__,_/\\__,_/_/ /_/ ");
+    mvprintw(max_y-2, max_x/2 - 16, "/_____/\\__,_/\\__,_/_/ /_/ ");
     refresh();
     usleep(200000);
-    mvprintw(max_y-0, max_x/2 - 15, "                          ");
+    mvprintw(max_y-1, max_x/2 - 16, "                          ");
     refresh();
     usleep(1500000);
 
@@ -29,22 +29,22 @@ void animation(int max_x, int max_y) {
     refresh();
 
     usleep(200000);
-    mvprintw(max_y-5-max_y/3, max_x/2 - 15, "    ____                ");
+    mvprintw(max_y-6-max_y/4, max_x/2 - 14, "    ____                ");
     refresh();
     usleep(200000);
-    mvprintw(max_y-4-max_y/3, max_x/2 - 15, "   /  _/___ _____  _____");
+    mvprintw(max_y-5-max_y/4, max_x/2 - 14, "   /  _/___ _____  _____");
     refresh();
     usleep(200000);
-    mvprintw(max_y-3-max_y/3, max_x/2 - 15, "   / // __ `/ __ \\/ ___/");
+    mvprintw(max_y-4-max_y/4, max_x/2 - 14, "   / // __ `/ __ \\/ ___/");
     refresh();
     usleep(200000);
-    mvprintw(max_y-2-max_y/3, max_x/2 - 15, " _/ // /_/ / /_/ / /    ");
+    mvprintw(max_y-3-max_y/4, max_x/2 - 14, " _/ // /_/ / /_/ / /    ");
     refresh();
     usleep(200000);
-    mvprintw(max_y-1-max_y/3, max_x/2 - 15, "/___/\\__, /\\____/_/     ");
+    mvprintw(max_y-2-max_y/4, max_x/2 - 14, "/___/\\__, /\\____/_/     ");
     refresh();
     usleep(200000);
-    mvprintw(max_y-0-max_y/3, max_x/2 - 15, "    /____/              ");
+    mvprintw(max_y-1-max_y/4, max_x/2 - 14, "    /____/              ");
     refresh();
     usleep(1500000);
 
@@ -52,22 +52,22 @@ void animation(int max_x, int max_y) {
     refresh();
 
     usleep(200000);
-    mvprintw(max_y-5-2*max_y/3, max_x/2 - 15, "   ______          __     ");
+    mvprintw(max_y-6-2*max_y/4, max_x/2 - 14, "   ______          __     ");
     refresh();
     usleep(200000);
-    mvprintw(max_y-4-2*max_y/3, max_x/2 - 15, "  / ____/___ _____/ /_  __");
+    mvprintw(max_y-5-2*max_y/4, max_x/2 - 14, "  / ____/___ _____/ /_  __");
     refresh();
     usleep(200000);
-    mvprintw(max_y-3-2*max_y/3, max_x/2 - 15, " / /   / __ `/ __  / / / /");
+    mvprintw(max_y-4-2*max_y/4, max_x/2 - 14, " / /   / __ `/ __  / / / /");
     refresh();
     usleep(200000);
-    mvprintw(max_y-2-2*max_y/3, max_x/2 - 15, "/ /___/ /_/ / /_/ / /_/ / ");
+    mvprintw(max_y-3-2*max_y/4, max_x/2 - 14, "/ /___/ /_/ / /_/ / /_/ / ");
     refresh();
     usleep(200000);
-    mvprintw(max_y-1-2*max_y/3, max_x/2 - 15, "\\____/\\__,_/\\__,_/\\__,_/  ");
+    mvprintw(max_y-2-2*max_y/4, max_x/2 - 14, "\\____/\\__,_/\\__,_/\\__,_/  ");
     refresh();
     usleep(200000);
-    mvprintw(max_y-0-2*max_y/3, max_x/2 - 15, "                          ");
+    mvprintw(max_y-1-2*max_y/4, max_x/2 - 14, "                          ");
     refresh();
     usleep(1500000);
 
@@ -96,6 +96,43 @@ void animation(int max_x, int max_y) {
 
     clear();
     refresh();
+    usleep(350000);
+
+    mvprintw(max_y-6, max_x/2 - 16 , "    __                    ");
+    mvprintw(max_y-5, max_x/2 - 16, "   / /   __  ______ _____ ");
+    mvprintw(max_y-4, max_x/2 - 16, "  / /   / / / / __ `/ __ \\");
+    mvprintw(max_y-3, max_x/2 - 16, " / /___/ /_/ / /_/ / / / /");
+    mvprintw(max_y-2, max_x/2 - 16, "/_____/\\__,_/\\__,_/_/ /_/ ");
+    mvprintw(max_y-1, max_x/2 - 16, "                          ");
+
+    mvprintw(max_y-6-max_y/4, max_x/2 - 14, "    ____                ");
+    mvprintw(max_y-5-max_y/4, max_x/2 - 14, "   /  _/___ _____  _____");
+    mvprintw(max_y-4-max_y/4, max_x/2 - 14, "   / // __ `/ __ \\/ ___/");
+    mvprintw(max_y-3-max_y/4, max_x/2 - 14, " _/ // /_/ / /_/ / /    ");
+    mvprintw(max_y-2-max_y/4, max_x/2 - 14, "/___/\\__, /\\____/_/     ");
+    mvprintw(max_y-1-max_y/4, max_x/2 - 14, "    /____/              ");
+
+    mvprintw(max_y-6-2*max_y/4, max_x/2 - 14, "   ______          __     ");
+    mvprintw(max_y-5-2*max_y/4, max_x/2 - 14, "  / ____/___ _____/ /_  __");
+    mvprintw(max_y-4-2*max_y/4, max_x/2 - 14, " / /   / __ `/ __  / / / /");
+    mvprintw(max_y-3-2*max_y/4, max_x/2 - 14, "/ /___/ /_/ / /_/ / /_/ / ");
+    mvprintw(max_y-2-2*max_y/4, max_x/2 - 14, "\\____/\\__,_/\\__,_/\\__,_/  ");
+    mvprintw(max_y-1-2*max_y/4, max_x/2 - 14, "                          ");
+
+    mvprintw(0, max_x/2 - 20, "   ____        _       __       __     ");
+    mvprintw(1, max_x/2 - 20, "  / __ \\__  __(_)___  / /____  / /___ _");
+    mvprintw(2, max_x/2 - 20, " / / / / / / / / __ \\/ __/ _ \\/ / __ `/");
+    mvprintw(3, max_x/2 - 20, "/ /_/ / /_/ / / / / / /_/  __/ / /_/ / ");
+    mvprintw(4, max_x/2 - 20, "\\___\\_\\__,_/_/_/ /_/\\__/\\___/_/\\__,_/  ");
+    mvprintw(5, max_x/2 - 20, "                                       ");
+
+    refresh();
+
+    clear();
+    usleep(1250000);
+    refresh();
+
+    usleep(500000);
 
     usleep(200000);
     mvprintw(max_y/2 - 6, max_x/2 - 30, "   _____                   ______                     ");
@@ -209,4 +246,5 @@ void animation(int max_x, int max_y) {
     refresh();
 
     usleep(1000000);
-}
+
+  }
